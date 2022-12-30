@@ -6,10 +6,14 @@ import (
 
 	"CrashCourse/controller"
 	router "CrashCourse/http"
+	"CrashCourse/repository"
+	"CrashCourse/service"
 )
 
 var (
-	postController controller.PostController = controller.NewPostController()
+	postRepository repository.PostRepository = repository.NewFirestoreRepository()
+	postService    service.PostService       = service.NewPostService(postRepository)
+	postController controller.PostController = controller.NewPostController(postService)
 	httpRouter     router.Router             = router.NewChiRouter()
 )
 
