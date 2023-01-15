@@ -1,2 +1,4 @@
 CrashCourse
 go.sum
+controller/posts.db
+posts.db
