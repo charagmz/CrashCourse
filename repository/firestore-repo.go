@@ -4,7 +4,7 @@ import (
 	"context"
 	"log"
 
-	"CrashCourse/entity"
+	"github.com/charagmz/CrashCourse/entity"
 
 	"cloud.google.com/go/firestore"
 	"google.golang.org/api/iterator"

@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"CrashCourse/entity"
+	"github.com/charagmz/CrashCourse/entity"
 )
 
 type PostRepository interface {

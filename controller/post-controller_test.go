@@ -1,9 +1,6 @@
 package controller
 
 import (
-	"CrashCourse/entity"
-	"CrashCourse/repository"
-	"CrashCourse/service"
 	"bytes"
 	"encoding/json"
 	"io"
@@ -12,6 +9,10 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"github.com/charagmz/CrashCourse/entity"
+	"github.com/charagmz/CrashCourse/repository"
+	"github.com/charagmz/CrashCourse/service"
 )
 
 const (

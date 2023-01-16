@@ -1,10 +1,11 @@
 package repository
 
 import (
-	"CrashCourse/entity"
 	"database/sql"
 	"log"
 	"os"
+
+	"github.com/charagmz/CrashCourse/entity"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -72,7 +73,7 @@ func (*sqliteRepo) FindAll() ([]entity.Post, error) {
 		return nil, err
 	}
 	defer rows.Close()
-	var posts []entity.Post
+	var posts []entity.Post = []entity.Post{}
 	for rows.Next() {
 		var id int64
 		var title string

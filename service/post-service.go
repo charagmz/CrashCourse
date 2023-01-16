@@ -1,10 +1,11 @@
 package service
 
 import (
-	"CrashCourse/entity"
-	"CrashCourse/repository"
 	"errors"
 	"math/rand"
+
+	"github.com/charagmz/CrashCourse/entity"
+	"github.com/charagmz/CrashCourse/repository"
 )
 
 type PostService interface {
@@ -37,7 +38,7 @@ func (*service) Validate(post *entity.Post) error {
 }
 
 func (*service) Create(post *entity.Post) (*entity.Post, error) {
-	post.ID = rand.Int63()
+	post.ID = rand.Int63n(10000000)
 	return repo.Save(post)
 }
 

@@ -1,8 +1,9 @@
 package service
 
 import (
-	"CrashCourse/entity"
 	"testing"
+
+	"github.com/charagmz/CrashCourse/entity"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
@@ -26,6 +27,13 @@ func (mock *MockRepository) FindAll() ([]entity.Post, error) {
 	args := mock.Called()                             //this is going to get the arguments by the mock
 	resultPosts := args.Get(0)                        //the first argument is the post's array
 	return resultPosts.([]entity.Post), args.Error(1) //Do type assertion for the array, get the args parameter for error
+}
+
+func (mock *MockRepository) Delete(post *entity.Post) error {
+	//Stub the function returning the arguments that we receive
+	args := mock.Called() //this is going to get the arguments by the mock
+	//resultPost := args.Get(0)                         //the first argument is the post
+	return args.Error(1) //Get the args parameter for error
 }
 
 func TestValidateEmptyPost(t *testing.T) {

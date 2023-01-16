@@ -1,13 +1,12 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
+	"os"
 
-	"CrashCourse/controller"
-	router "CrashCourse/http"
-	"CrashCourse/repository"
-	"CrashCourse/service"
+	"github.com/charagmz/CrashCourse/controller"
+	router "github.com/charagmz/CrashCourse/http"
+	"github.com/charagmz/CrashCourse/repository"
+	"github.com/charagmz/CrashCourse/service"
 )
 
 var (
@@ -18,20 +17,11 @@ var (
 )
 
 func main() {
-	/*
-		passwordHash, err := bcrypt.GenerateFromPassword([]byte("superjikko2023$"), bcrypt.DefaultCost)
-		if err != nil {
-			fmt.Println(err)
-		}
-		fmt.Println(string(passwordHash))
-	*/
 
-	const port string = ":8000"
-	httpRouter.GET("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Up and running...")
-	})
+	//const port string = ":8000"
 	httpRouter.GET("/posts", postController.GetPosts)
 	httpRouter.POST("/posts", postController.AddPost)
 
-	httpRouter.SERVE(port)
+	//httpRouter.SERVE(port)
+	httpRouter.SERVE(os.Getenv("PORT"))
 }

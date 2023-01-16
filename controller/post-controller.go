@@ -2,12 +2,11 @@ package controller
 
 import (
 	"encoding/json"
-
 	"net/http"
 
-	"CrashCourse/entity"
-	"CrashCourse/errors"
-	"CrashCourse/service"
+	"github.com/charagmz/CrashCourse/entity"
+	"github.com/charagmz/CrashCourse/errors"
+	"github.com/charagmz/CrashCourse/service"
 )
 
 type controller struct{}
