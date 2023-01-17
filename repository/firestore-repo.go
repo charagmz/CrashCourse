@@ -74,7 +74,12 @@ func (*repo) FindAll() ([]entity.Post, error) {
 
 }
 
-//Delete: TODO
+// FindByID: TODO
+func (r *repo) FindByID(id string) (*entity.Post, error) {
+	return nil, nil
+}
+
+// Delete: TODO
 func (r *repo) Delete(post *entity.Post) error {
 	return nil
 }

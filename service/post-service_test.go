@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/charagmz/CrashCourse/entity"
@@ -27,6 +28,13 @@ func (mock *MockRepository) FindAll() ([]entity.Post, error) {
 	args := mock.Called()                             //this is going to get the arguments by the mock
 	resultPosts := args.Get(0)                        //the first argument is the post's array
 	return resultPosts.([]entity.Post), args.Error(1) //Do type assertion for the array, get the args parameter for error
+}
+
+func (mock *MockRepository) FindByID(id string) (*entity.Post, error) {
+	//Stub the function returning the arguments that we receive
+	args := mock.Called()                           //this is going to get the arguments by the mock
+	resultPost := args.Get(0)                       //the first argument is the post's array
+	return resultPost.(*entity.Post), args.Error(1) //Do type assertion for the array, get the args parameter for error
 }
 
 func (mock *MockRepository) Delete(post *entity.Post) error {
@@ -88,6 +96,31 @@ func TestFindAll(t *testing.T) {
 	assert.Equal(t, identifier, result[0].ID)
 	assert.Equal(t, "A", result[0].Title)
 	assert.Equal(t, "B", result[0].Text)
+}
+
+func TestFindByID(t *testing.T) {
+	mockRepo := new(MockRepository) //Create a new reference to the mock repository
+
+	var identifier int64 = 1
+
+	post := entity.Post{ID: identifier, Title: "A", Text: "B"}
+
+	//setup expectations
+	mockRepo.On("FindByID").Return(&post, nil) //when the FindAll methos is invoked on this mock repo is going to return an post, and nil as the error
+
+	//create a service with the mockRepo
+	testService := NewPostService(mockRepo)
+
+	result, _ := testService.FindByID(fmt.Sprint(identifier))
+
+	//create an assertion on the expectation
+	//Mock Assertion: Behavioral
+	mockRepo.AssertExpectations(t)
+
+	//Data Assertion
+	assert.Equal(t, identifier, result.ID)
+	assert.Equal(t, "A", result.Title)
+	assert.Equal(t, "B", result.Text)
 }
 
 func TestCreate(t *testing.T) {
